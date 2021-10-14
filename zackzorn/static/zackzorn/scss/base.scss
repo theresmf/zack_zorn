@@ -1,0 +1,10 @@
+@import "colors.scss";
+@import "custom_bootstrap.scss";
+
+$font: $darke;
+$bg: $dark4;
+
+body {
+    background-color: $bg;
+    color: $font;
+}

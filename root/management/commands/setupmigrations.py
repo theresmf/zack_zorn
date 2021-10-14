@@ -12,15 +12,12 @@ from django.core.management.base import BaseCommand
 class Command(BaseCommand):
 
     def handle(self, *args, **options):
-        for app in settings.PROJECT_APPS:
-            
+        """ Call makemigrations on each installed app """
+        
+        for app in settings.INSTALLED_APPS:
+            appname = app.split('.')[-1]
             try:
-                path = app.replace('.', '/')
-                migrations = f"{path}/migrations"
-                os.mkdir(migrations)
-                init = f"{migrations}/__init__.py"
-                open(init, 'a').close()
-                
+                management.call_command('makemigrations', appname)
             except Exception as e:
                 pass
-                # print(f"{app} failed. {e}")
+                print(f"{app} failed. {e}")

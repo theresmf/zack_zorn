@@ -14,5 +14,4 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         management.call_command('deploymigrations')
         management.call_command('flush')
-        management.call_command('sudev')
         management.call_command('collectstatic', interactive=False)
