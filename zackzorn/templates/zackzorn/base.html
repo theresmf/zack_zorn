@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+
+{% load static %}
+{% load compress %}
+
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    
+    <!-- JQuery first (3.5.0 breaks the site), then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    {# <script src="https://code.jquery.com/jquery-3.5.0.js" integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc=" crossorigin="anonymous"></script> #}
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+    {# <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.0/cjs/popper.min.js" integrity="sha256-OH05DFHUWzr725HmuHo3pnuvUUn+TJuj8/Qz9xytFEw=" crossorigin="anonymous"></script> #}
+    {# <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script> #}
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+    <!-- Icon library -->
+    <!-- Lineicons -->
+    <link href="https://cdn.lineicons.com/2.0/LineIcons.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/19339791e2.js" crossorigin="anonymous"></script>
+    
+    <!-- Pretty Checkbox -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css">
+    
+    {# <link rel="shortcut icon" type="image/png" href="{% static 'root/img/favicon-32x32.png' %}"/> #}
+    
+    <!-- flatpickr (requires .js file and init-script) -->
+    <!-- Plugin for calendar date-picker -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.3/flatpickr.css" integrity="sha256-7vIWE+OHz3pLhuONuFqSa/Oh/YUUHFIMooHMwN1Q2bk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.3/themes/dark.css" integrity="sha256-K7VO/dYboZOIjm2us6WE3Z8P8lsfUKaUVSnYYtPg6eE=" crossorigin="anonymous" />
+    
+    <!-- Other stylesheets -->
+    {% compress css %}
+    <link rel="stylesheet" type="text/x-scss" href="{% static "infoscreen/scss/base.scss" %}">
+    {% endcompress %}
+    
+    <!-- Title -->
+    <title>{% block title %}Base{% endblock %}</title>
+    
+    {% block head %}
+    <!-- head access for extended templates -->
+    {% endblock %}
+</head>
+<body>
+    {% block navbar %}
+    
+    {% endblock %}
+    
+    <div class="body-outer container-fluid m-0 p-0">
+        {% block body %}
+        <!-- Body access for extended templates -->
+        {% endblock %}
+    </div>
+    
+    {% block footer %}
+    
+    {% endblock %}
+    
+    
+    <!-- Begin: scripts -->
+    <!-- NOTE: Scripts and plugins are imported last because of better user experience -->
+    
+    <!-- flatpickr (requires: .css file) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.3/flatpickr.js" integrity="sha256-3soYYYidbbsrmHXTGgxeCdgMfgt6IqWjWPKfuDWduqM=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.3/l10n/no.js" integrity="sha256-q8KkXT0pTTRz4uxuUW+rWQbWyg1VTAygONGTJS/QUjE=" crossorigin="anonymous"></script>
+    
+    <!-- select2 (requires: .css file) -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    
+    {% block scripts %}
+    <!-- Note: scripts access for extended templates -->
+    {% endblock scripts %}
+    
+    <!-- Begin: base script -->
+    <script type="text/javascript">
+        /*
+        Note: '$' is short for using JQuery. Ensure that JQuery has been imported before using '$'.
+        Note: Wait for ready document (meaning all elements have loaded on screen). This
+        enhances user experience because visual confirmation is prioritized over functionality.
+        */
+        $(document).ready(function() {
+            
+            // Enable Bootstrap tooltips
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            })
+            
+            let flatpickrConfig = {
+                default: {
+                    locale: 'no',
+                    allowInput: true,
+                },
+                datetime: {
+                    locale: 'no',
+                    allowInput: true,
+                    enableTime: true,
+                    time_24hr: true,
+                },
+                time: {
+                    locale: 'no',
+                    allowInput: true,
+                    enableTime: true,
+                    time_24hr: true,
+                    noCalendar: true,
+                }
+            }
+            
+            $(".flatpickr-init").each(function(i, element) {
+                $(element).flatpickr(flatpickrConfig.default);
+            });
+            $(".flatpickr-init--datetime").each(function(i, element) {
+                $(element).flatpickr(flatpickrConfig.datetime);
+            });
+            $(".flatpickr-init--time").each(function(i, element) {
+                $(element).flatpickr(flatpickrConfig.time);
+            });
+            
+            // e.g. button to clear an input-field
+            $('.clear-target').click(function() {
+                let inputId = $(this).attr('data-target');
+                $(`#${inputId}`).val('');
+            });
+        })
+    </script>
+    <!-- End: scripts -->
+</body>
+</html>
+
+

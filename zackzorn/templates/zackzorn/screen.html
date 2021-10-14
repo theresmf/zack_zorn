@@ -1,0 +1,14 @@
+{% extends "zackzorn/base.html" %} {% block title %} {{ screen.name }} {%
+endblock %} {% block head %}
+<style></style>
+{% endblock %} {% block body %}
+<div class="body-inner">
+  <div class="vw-100 vh-100 border border-dark">
+    <img
+      class="h-100 w-100 object-fit-cover"
+      src="{{ screen.images.first.url }}"
+      alt="{{ screen.images.first.name }}"
+    />
+  </div>
+</div>
+{% endblock %}

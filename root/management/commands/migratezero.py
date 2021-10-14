@@ -12,6 +12,8 @@ from django.core.management.base import BaseCommand
 class Command(BaseCommand):
 
     def handle(self, *args, **options):
+        """ Migrate each installed app to zero """
+        
         for app in settings.INSTALLED_APPS:
             try:
                 appname = app.split('.')[-1]
