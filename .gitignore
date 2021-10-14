@@ -32,3 +32,6 @@ staticroot
 !.vscode/launch.json
 !.vscode/extensions.json
 !.vscode/extensions.json.recommended
+
+
+.pytest_cache/

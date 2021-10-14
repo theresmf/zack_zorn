@@ -2,6 +2,7 @@ from .base import *
 
 import os
 
+from root.constants import Environment
 
 ALLOWED_HOSTS = ['*']
 
@@ -19,4 +20,3 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
