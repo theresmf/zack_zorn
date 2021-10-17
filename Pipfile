@@ -8,6 +8,8 @@ django-debug-toolbar = "*"
 yapf = "*"
 pylint = "*"
 pytest = "*"
+django-heroku = "*"
+whitenoise = "*"
 
 [dev-packages]
 

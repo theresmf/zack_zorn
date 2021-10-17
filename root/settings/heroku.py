@@ -2,6 +2,7 @@ from .base import *
 import os
 import django_heroku
 
+from root.constants import Environment
 
 ALLOWED_HOSTS = ['info-screens.herokuapp.com']
 
@@ -16,7 +17,7 @@ ENV = Environment.HEROKU
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MIDDLEWARE += [
-    'whitenoise.middleware.WhiteNoiseMiddleware', # whitenoise, heroku
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # whitenoise, heroku
 ]
 
 # activate django-heroku.
