@@ -1,33 +1,49 @@
 from django.contrib import admin
 
-from zackzorn import models as zackzorn_models
-from root import models as root_models
+# from root import models as root_models
+from . import models as zackzorn_models
 
 
-# class ScreenAdmin(root_models.CustomBaseAdmin):
-#     list_display = ['name']
-#     ordering = []
-#     list_filter = ['images']
-#     filter_horizontal = ['images']
-#     search_fields = ['name', 'slug']
-    
-    
-# class ScreenHasImageAdmin(admin.ModelAdmin):
-#     list_display = ['screen', 'image', 'nr']
-#     ordering = ['screen', 'nr']
-#     list_filter = ['screen', 'image']
-#     # filter_horizontal = []
-#     search_fields = ['screen__name', 'image__name']
+@admin.register(zackzorn_models.Genre)
+class GenreAdmin(admin.ModelAdmin):
+    list_display = ['name']
+    # ordering = []
+    # list_filter = []
+    # filter_horizontal = []
+    search_fields = ['name']
 
 
-# class ImageAdmin(root_models.CustomBaseAdmin):
-#     list_display = ['name', 'url']
-#     ordering = ['name']
-#     # list_filter = []
-#     # filter_horizontal = []
-#     search_fields = ['name']
+@admin.register(zackzorn_models.Artist)
+class ArtistAdmin(admin.ModelAdmin):
+    list_display = ['first_name', 'last_name', 'artist_name', 'age']
+    ordering = ['last_name']
+    # list_filter = []
+    # filter_horizontal = []
+    search_fields = ['first_name', 'last_name', 'artist_name']
 
 
-# admin.site.register(zackzorn_models.Screen, ScreenAdmin)
-# # admin.site.register(zackzorn_models.ScreenHasImage, ScreenHasImageAdmin)
-# admin.site.register(zackzorn_models.Image, ImageAdmin)
+@admin.register(zackzorn_models.Band)
+class BandAdmin(admin.ModelAdmin):
+    list_display = ['name']
+    ordering = ['name']
+    list_filter = ['genre']
+    filter_horizontal = ['genre', 'members']
+    search_fields = ['name']
+
+
+@admin.register(zackzorn_models.Album)
+class AlbumAdmin(admin.ModelAdmin):
+    list_display = ['title', 'band', 'release_date', 'producer', 'price']
+    ordering = ['title']
+    list_filter = ['genre']
+    filter_horizontal = ['genre', 'featuring']
+    search_fields = ['title', 'band__title', 'producer']
+
+
+@admin.register(zackzorn_models.Track)
+class TrackAdmin(admin.ModelAdmin):
+    list_display = ['title', 'album', 'length']
+    ordering = ['title']
+    # list_filter = []
+    filter_horizontal = ['featuring']
+    search_fields = ['title', 'album__title']
