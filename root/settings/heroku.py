@@ -4,7 +4,7 @@ import django_heroku
 
 from root.constants import Environment
 
-ALLOWED_HOSTS = ['info-screens.herokuapp.com']
+ALLOWED_HOSTS = ['zackzorn.herokuapp.com']
 
 # Values are set in heroku dashboard
 SECRET_KEY = os.environ['SECRET_KEY']
