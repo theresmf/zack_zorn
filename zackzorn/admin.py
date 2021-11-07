@@ -4,8 +4,8 @@ from django.contrib import admin
 from . import models as zackzorn_models
 
 
-@admin.register(zackzorn_models.Genre)
-class GenreAdmin(admin.ModelAdmin):
+@admin.register(zackzorn_models.MusicGenre)
+class MusicGenre(admin.ModelAdmin):
     list_display = ['name']
     # ordering = []
     # list_filter = []
@@ -47,3 +47,21 @@ class TrackAdmin(admin.ModelAdmin):
     # list_filter = []
     filter_horizontal = ['featuring']
     search_fields = ['title', 'album__title']
+
+
+@admin.register(zackzorn_models.BookGenre)
+class GenreAdmin(admin.ModelAdmin):
+    list_display = ['name']
+    # ordering = []
+    # list_filter = []
+    # filter_horizontal = []
+    search_fields = ['name']
+
+
+@admin.register(zackzorn_models.Book)
+class BookAdmin(admin.ModelAdmin):
+    list_display = ['title', 'author', 'price']
+    ordering = ['title']
+    # list_filter = []
+    filter_horizontal = ['genre']
+    search_fields = ['title']
