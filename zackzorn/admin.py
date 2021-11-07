@@ -65,3 +65,30 @@ class BookAdmin(admin.ModelAdmin):
     # list_filter = []
     filter_horizontal = ['genre']
     search_fields = ['title']
+
+
+@admin.register(zackzorn_models.Event)
+class EventAdmin(admin.ModelAdmin):
+    list_display = ['title', 'event_type', 'date', 'venue']
+    ordering = ['title']
+    # list_filter = []
+    # filter_horizontal = []
+    search_fields = ['title', 'event_type']
+
+
+@admin.register(zackzorn_models.Tag)
+class TagAdmin(admin.ModelAdmin):
+    list_display = ['name']
+    ordering = ['name']
+    # list_filter = []
+    # filter_horizontal = []
+    search_fields = ['name']
+
+
+@admin.register(zackzorn_models.BlogPost)
+class BlogPostAdmin(admin.ModelAdmin):
+    list_display = ['title']
+    ordering = ['date']
+    # list_filter = []
+    # filter_horizontal = []
+    search_fields = ['title']

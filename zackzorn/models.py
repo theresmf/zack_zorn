@@ -81,3 +81,37 @@ class Book(models.Model):
 
     def __str__(self) -> str:
         return self.title
+
+
+class Event(models.Model):
+    title = models.CharField(max_length=45)
+    event_type = models.CharField(max_length=45)
+    date = models.DateField()
+    venue = models.CharField(max_length=45)
+    ticket_price = models.IntegerField()
+    description = models.TextField()
+    band = models.ForeignKey(Band, null=True, blank=True, on_delete=models.SET_NULL)
+    interviewee = models.CharField(max_length=45)
+    completed = models.BooleanField()
+    cancelled = models.BooleanField()
+
+    def __str__(self) -> str:
+        return self.title
+
+
+class Tag(models.Model):
+    name = models.CharField(max_length=45)
+
+    def __str__(self) -> str:
+        return self.title
+
+
+class BlogPost(models.Model):
+    title = models.CharField(max_length=45)
+    content = models.TextField()
+    date = models.DateField()
+    author = models.CharField(max_length=45)
+    tag = models.ManyToManyField(Tag)
+
+    def __str__(self) -> str:
+        return self.title
