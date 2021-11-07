@@ -11,6 +11,7 @@ pytest = "*"
 django-heroku = "*"
 whitenoise = "*"
 django = "*"
+gunicorn = "*"
 
 [dev-packages]
 
