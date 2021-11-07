@@ -5,7 +5,7 @@ from . import models as zackzorn_models
 
 
 @admin.register(zackzorn_models.MusicGenre)
-class MusicGenre(admin.ModelAdmin):
+class MusicGenreAdmin(admin.ModelAdmin):
     list_display = ['name']
     # ordering = []
     # list_filter = []
@@ -50,7 +50,7 @@ class TrackAdmin(admin.ModelAdmin):
 
 
 @admin.register(zackzorn_models.BookGenre)
-class GenreAdmin(admin.ModelAdmin):
+class BookGenreAdmin(admin.ModelAdmin):
     list_display = ['name']
     # ordering = []
     # list_filter = []
