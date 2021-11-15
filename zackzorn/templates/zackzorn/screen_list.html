@@ -1,7 +1,12 @@
-{% extends "zackzorn/base.html" %} {% load zackzorn_tags %} {% block title
-%}Screens{% endblock %} {% block head %}
+{% extends "zackzorn/base.html" %} {% load zackzorn_tags %} 
+
+{% block title %}Screens{% endblock %} 
+
+{% block head %}
 <style></style>
-{% endblock %} {% block body %}
+{% endblock %} 
+
+{% block body %}
 <div class="body-inner">
   <div class="">
     {% for screen in screens %} {% screen_component screen=screen %} {% endfor

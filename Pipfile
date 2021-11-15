@@ -12,6 +12,10 @@ django-heroku = "*"
 whitenoise = "*"
 django = "*"
 gunicorn = "*"
+django-filter = "*"
+djangorestframework = "*"
+django-guardian = "*"
+markdown = "*"
 
 [dev-packages]
 

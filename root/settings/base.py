@@ -13,13 +13,15 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
+
+AUTH_USER_MODEL = 'account.User'
 
 ALLOWED_HOSTS = []
 
@@ -35,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'root',  # register to enable management.commands
     'zackzorn',
+    'account',
 ]
 
 MIDDLEWARE = [
@@ -45,7 +48,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'django_user_agents.middleware.UserAgentMiddleware',  # django-user-agents
 ]
 
 STATICFILES_FINDERS = [
@@ -104,6 +106,21 @@ DEBUG_TOOLBAR_CONFIG = {
     'SHOW_COLLAPSED': True,
 }
 # End: django-debug-toolbar --------------------------------------------------------------
+
+# djangorestframework:
+INSTALLED_APPS += [
+    'rest_framework',
+]
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly']
+}
+
+# also configured in root.urls
+
+# End: djangorestframework --------------------------------------------------------------
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
