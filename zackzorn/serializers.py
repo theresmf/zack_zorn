@@ -11,3 +11,11 @@ class ArtistSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Artist
         fields = '__all__'
+
+
+class MusicGenreSerializer(serializers.ModelSerializer):
+    url = serializers.CharField(source='get_absolute_url', read_only=True)
+
+    class Meta:
+        model = models.MusicGenre
+        fields = '__all__'

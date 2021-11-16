@@ -20,4 +20,8 @@ class Index(View):
 class ArtistViewSet(viewsets.ModelViewSet):
     queryset = models.Artist.objects.all()
     serializer_class = serializers.ArtistSerializer
-    
+
+
+class MusicGenreViewSet(viewsets.ModelViewSet):
+    queryset = models.MusicGenre.objects.all()
+    serializer_class = serializers.MusicGenreSerializer

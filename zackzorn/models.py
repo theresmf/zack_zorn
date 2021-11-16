@@ -19,10 +19,13 @@ class Artist(models.Model):
 
 
 class MusicGenre(models.Model):
-    name = models.CharField(max_length=45)
+    name = models.CharField(max_length=45, unique=True)
 
     def __str__(self) -> str:
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('zackzorn:musicgenre-detail', kwargs={'pk': self.id})
 
 
 class Band(models.Model):

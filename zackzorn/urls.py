@@ -10,6 +10,7 @@ app_name = 'zackzorn'
 
 ROUTER = routers.DefaultRouter()
 ROUTER.register('api/artists', views.ArtistViewSet)
+ROUTER.register('api/music-genres', views.MusicGenreViewSet)
 
 urlpatterns = [
     path('', include(ROUTER.urls)),
