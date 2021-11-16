@@ -31,11 +31,14 @@ class MusicGenre(models.Model):
 class Band(models.Model):
     name = models.CharField(max_length=45)
     description = models.TextField()
-    members = models.ManyToManyField(to=Artist)
-    genre = models.ManyToManyField(to=MusicGenre)
+    members = models.ManyToManyField(to=Artist, blank=True)
+    genre = models.ManyToManyField(to=MusicGenre, blank=True)
 
     def __str__(self) -> str:
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('zackzorn:band-detail', kwargs={'pk': self.id})
 
 
 class Album(models.Model):

@@ -25,3 +25,8 @@ class ArtistViewSet(viewsets.ModelViewSet):
 class MusicGenreViewSet(viewsets.ModelViewSet):
     queryset = models.MusicGenre.objects.all()
     serializer_class = serializers.MusicGenreSerializer
+
+
+class BandViewSet(viewsets.ModelViewSet):
+    queryset = models.Band.objects.all()
+    serializer_class = serializers.BandSerializer
