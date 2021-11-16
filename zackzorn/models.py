@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Artist(models.Model):
@@ -12,6 +13,9 @@ class Artist(models.Model):
 
     def get_full_name(self) -> str:
         return f'{self.first_name} {self.last_name}'.strip()
+
+    def get_absolute_url(self):
+        return reverse('zackzorn:artist-detail', kwargs={'pk': self.id})
 
 
 class MusicGenre(models.Model):
@@ -103,7 +107,7 @@ class Tag(models.Model):
     name = models.CharField(max_length=45)
 
     def __str__(self) -> str:
-        return self.title
+        return self.name
 
 
 class BlogPost(models.Model):
