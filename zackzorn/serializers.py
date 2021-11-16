@@ -27,3 +27,11 @@ class BandSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Band
         fields = '__all__'
+
+
+class AlbumSerializer(serializers.ModelSerializer):
+    url = serializers.CharField(source='get_absolute_url', read_only=True)
+
+    class Meta:
+        model = models.Album
+        fields = '__all__'

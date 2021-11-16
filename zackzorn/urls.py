@@ -12,6 +12,7 @@ ROUTER = routers.DefaultRouter()
 ROUTER.register('api/artists', views.ArtistViewSet)
 ROUTER.register('api/music-genres', views.MusicGenreViewSet)
 ROUTER.register('api/bands', views.BandViewSet)
+ROUTER.register('api/albums', views.AlbumViewSet)
 
 urlpatterns = [
     path('', include(ROUTER.urls)),

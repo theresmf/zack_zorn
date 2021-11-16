@@ -44,17 +44,20 @@ class Band(models.Model):
 class Album(models.Model):
     title = models.CharField(max_length=45)
     band = models.ForeignKey(to=Band, null=True, blank=True, on_delete=models.SET_NULL)
-    genre = models.ManyToManyField(to=MusicGenre)
+    genre = models.ManyToManyField(to=MusicGenre, blank=True)
 
-    featuring = models.ManyToManyField(to=Artist)
+    featuring = models.ManyToManyField(to=Artist, blank=True)
     release_date = models.DateField()
-    producer = models.CharField(max_length=45)
-    cover_designer = models.CharField(max_length=45)
-    price = models.IntegerField()  # seconds
-    description = models.TextField()
+    producer = models.CharField(max_length=45, null=True, blank=True)
+    cover_designer = models.CharField(max_length=45, null=True, blank=True)
+    price = models.IntegerField(default=0)
+    description = models.TextField(null=True, blank=True)
 
     def __str__(self) -> str:
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('zackzorn:album-detail', kwargs={'pk': self.id})
 
 
 class Track(models.Model):
