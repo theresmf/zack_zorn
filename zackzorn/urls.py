@@ -1,13 +1,19 @@
-from django.urls import path, include
-from django.views.generic.base import RedirectView
+# imports
+from rest_framework import routers
 
-from zackzorn import views
+from django.urls import include, path
+
+from . import views
+# End: imports ------------------------------------------------
 
 app_name = 'zackzorn'
 
-urlpatterns = [
-    # path('', RedirectView.as_view(pattern_name='zackzorn:screen_list'), name='index'),
-    # path('screen/<str:slug>/', views.ScreenView.as_view(), name='view_screen'),
-    # path('screens/', views.ScreenListView.as_view(), name='screen_list'),
-]
+ROUTER = routers.DefaultRouter()
+ROUTER.register('api/artists', views.ArtistViewSet)
+ROUTER.register('api/music-genres', views.MusicGenreViewSet)
+ROUTER.register('api/bands', views.BandViewSet)
+ROUTER.register('api/albums', views.AlbumViewSet)
 
+urlpatterns = [
+    path('', include(ROUTER.urls)),
+]
